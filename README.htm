@@ -1,0 +1,119 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+</head>
+<body>
+<h1><a name='7wTVdFw1NqF'></a>CLIME</h1>
+<p>　CLIME (Common Lisp Input Method Engine) は予測変換型のテキスト入力システムです。</p>
+<img style='display: block; margin: auto;' src='./images/top.png' />
+<p>　CLIME は増井俊之氏が作成した POBox に改変を加えたアプリケーションです。サーバは Common Lisp 言語で完全に書き直されており、クライアントプログラムにも多くの変更が加えられています。オリジナルの POBox との違いについては、<a href='#b7aUsriTkDJ'>POBoxとの相違点</a>を参照してください。</p>
+<h2><a name='jmXRzUWYW1r'></a>インストール</h2>
+<p>　ダウンロードした ZIP ファイルを展開し、任意の場所に置くだけです。試していないのですが、空白文字を含むようなパスは避けた方が良いかもしれません。</p>
+<p>　Windows クライアント（winclime.exe）は Cygwin を使用しています。以下のファイルはそのために必要になるファイルで、64bit Cygwin をインストールしている環境では必要ありません。</p>
+<ul>
+<li>cygwin1.dll</li>
+<li>cygstdc++-6.dll</li>
+<li>cyggcc_s-seh-1.dll</li>
+</ul>
+<h2><a name='bAnzDceGb9o'></a>アンインストール</h2>
+<p>　インストール時に置いたファイルを消すだけです。</p>
+<h2><a name='h1vILBov6aJ'></a>使い方</h2>
+<h3><a name='iLi66gvSpZh'></a>サーバの起動</h3>
+<p>　climesrv-start.bat を実行してください。以下のようにいわゆる DOS 窓が開いてCLIME のサーバプロセスが起動します。</p>
+<img style='display: block; margin: auto;' src='./images/server.01.png' />
+<p>　サーバプロセスを終了させる方法については、<a href='#lUr48vGaIDo'>サーバの終了</a>を参照してください。</p>
+<h3><a name='i3cTEiX4IXP'></a>Windows クライアント</h3>
+<p>　<strong>サーバを起動させてから</strong> winclime.exe を実行してください。以下のような入力ウィンドウが表示されます。</p>
+<img style='display: block; margin: auto;' src='./images/wiclime.01.png' />
+<p>　この入力ウィンドウは Alt+J を押すたびに表示／非表示が切り替わります。</p>
+<ul>
+<li>ToDo : 起動と終了</li>
+<li>ToDo : Alt+J による変換ウィンドウの表示／非表示切り替え</li>
+<li>ToDo : 基本的な入力、候補選択、Enterによる確定、さらにEnterによるターゲットへの貼り付け</li>
+<li>ToDo : Ctrl+J による変換の有効／無効切り替え</li>
+<li>ToDo : 単語登録と単語削除　⇒　これは「高度な使い方」か？</li>
+</ul>
+<ul>
+<li>64bit cygwin</li>
+</ul>
+<h3><a name='bnkiWNANAQQ'></a>Emacs クライアント</h3>
+<h3><a name='lUr48vGaIDo'></a>サーバの終了</h3>
+<p>　サーバプロセスを終了させるには、 <strong>クライアントを終了させてから</strong> サーバプロセスのDOS 窓で Ctrl+C を押してください。すると「バッチジョブを終了しますか(Y/N)？」と聞かれるので、y を押してから Enter です。</p>
+<img style='display: block; margin: auto;' src='./images/server.02.png' />
+<h2><a name='b7aUsriTkDJ'></a>POBoxとの相違点</h2>
+<p>　ここでは、オリジナルの POBox と CLIME の違いを簡単にまとめています。</p>
+<h3><a name='gFYY21FFLil'></a>サーバ</h3>
+<ul>
+<li>プロトコルの追加
+<ul>
+<li>C：コンテクストクリア</li>
+<li>E：辞書列挙</li>
+<li>I：辞書情報</li>
+<li>L：ログレベル設定</li>
+<li>Q：シャットダウン</li>
+<li>W：ログ転送</li>
+</ul>
+</li>
+<li>学習辞書のエントリ数に上限を設定する機能</li>
+<li>辞書への変更をマークし、必要な時だけ保存する機能</li>
+</ul>
+<h3><a name='i3cTEiX4IXP'></a>Windows クライアント</h3>
+<ul>
+<li>〔単語登録〕機能</li>
+<li>〔単語削除〕機能</li>
+<li>〔日付と時刻の挿入〕機能</li>
+<li>〔ダイレクトキー〕機能</li>
+<li>〔番号による候補選択〕機能</li>
+<li>〔確定時自動検索〕機能</li>
+<li>〔透過表示〕機能</li>
+<li>外観
+<ul>
+<li>変換ウィンドウの外観設定</li>
+<li>〔カラーテーマ〕機能</li>
+<li>アイコンの刷新（まだ暫定）</li>
+</ul>
+</li>
+<li>変換ウィンドウの位置制御
+<ul>
+<li>マルチウィンドウ環境における制御</li>
+<li>変換ウィンドウが画面の左右端からはみ出さないようにする制御</li>
+<li>画面下端付近においてキャレットの上側に変換ウィンドウを表示する制御</li>
+</ul>
+</li>
+<li>〔ショートカットキー〕の拡充
+<ul>
+<li>Alt+Q で終了</li>
+<li>Ctrl+O で単語登録</li>
+<li>Ctrl+Q で単語削除</li>
+<li>Ctrl+I でインデックス機能のトグル</li>
+<li>Ctrl+1～9 で数字入力</li>
+<li>Ctrl+Space で半角スペース入力</li>
+<li>Esc で変換キャンセル</li>
+<li>Alt+F1 でバージョン情報ダイアログ表示</li>
+<li>F1 でマニュアルページ表示（このドキュメント）</li>
+<li>F2 でカラーテーマ切り替え</li>
+</ul>
+</li>
+<li>〔Emacsキーバインド〕の拡充
+<ul>
+<li>Ctrl+T で文字入れ替え</li>
+<li>Ctrl+N で次候補</li>
+<li>Ctrl+P で前候補</li>
+<li>特定条件下でのEmacsキーイベントのターゲットウィンドウへの転送</li>
+</ul>
+</li>
+<li>その他
+<ul>
+<li>最小化からの復帰時に変換の有効／無効状態を保持</li>
+<li>二重起動の防止</li>
+</ul>
+</li>
+</ul>
+<h3><a name='bnkiWNANAQQ'></a>Emacs クライアント</h3>
+<ul>
+<li>単語登録機能の改善</li>
+<li>日時文字列挿入機能</li>
+</ul>
+</body>
+</html>
