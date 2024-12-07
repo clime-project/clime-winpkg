@@ -2,15 +2,25 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="Content-Style-Type" content="text/css">
+	<title>CLIME - Common Lisp Imput Method Engine</title>
+	<link rel=stylesheet href="./images/default.css">
 </head>
 <body>
 <h1><a name='7wTVdFw1NqF'></a>CLIME</h1>
 <p>　CLIME (Common Lisp Input Method Engine) は予測変換型のテキスト入力システムです。</p>
 <img style='display: block; margin: auto;' src='./images/top.png' />
-<p>　CLIME は増井俊之氏が作成した POBox に改変を加えたアプリケーションです。サーバは Common Lisp 言語で完全に書き直されており、クライアントプログラムにも多くの変更が加えられています。オリジナルの POBox との違いについては、<a href='#b7aUsriTkDJ'>POBoxとの相違点</a>を参照してください。</p>
+<p>　　</p>
+<p>　CLIME は増井俊之氏が作成した POBox に改変を加えたアプリケーションです。サーバは Common Lisp 言語で完全に書き直されており、クライアントプログラムにも多くの変更が加えられています。</p>
+<h2><a name='g5nEY37t5X0'></a>このパッケージに含まれるファイルについて</h2>
+<p>　このパッケージ（clime-winpkg）は Windows での利用のためのパッケージであり、実行可能ファイルなどのソースコードは別のリポジトリで管理されています。</p>
+<ul>
+<li><code>*.dict</code> : <a href='https://github.com/clime-project/clime-dict.git'>clime-dict</a></li>
+<li><code>climesrv.exe</code> : <a href='https://github.com/clime-project/clime-server.git'>clime-server</a></li>
+<li><code>winclime.exe</code> : <a href='https://github.com/clime-project/clime-client-windows.git'>clime-client-windows</a></li>
+</ul>
 <h2><a name='jmXRzUWYW1r'></a>インストール</h2>
 <p>　ダウンロードした ZIP ファイルを展開し、任意の場所に置くだけです。試していないのですが、空白文字を含むようなパスは避けた方が良いかもしれません。</p>
-<p>　Windows クライアント（winclime.exe）は Cygwin を使用しています。以下のファイルはそのために必要になるファイルで、64bit Cygwin をインストールしている環境では必要ありません。</p>
+<p>　Windows クライアント（winclime.exe）は（少なくとも現時点では） Cygwin を使用しています。以下のファイルはそのために必要になるファイルで、64bit Cygwin をインストールしている環境では必要ありません。</p>
 <ul>
 <li>cygwin1.dll</li>
 <li>cygstdc++-6.dll</li>
@@ -22,26 +32,190 @@
 <h3><a name='iLi66gvSpZh'></a>サーバの起動</h3>
 <p>　climesrv-start.bat を実行してください。以下のようにいわゆる DOS 窓が開いてCLIME のサーバプロセスが起動します。</p>
 <img style='display: block; margin: auto;' src='./images/server.01.png' />
-<p>　サーバプロセスを終了させる方法については、<a href='#lUr48vGaIDo'>サーバの終了</a>を参照してください。</p>
+<p>　CLIME の使用中は上記のウィンドウはそのままにしておいてください。サーバプロセスを終了させる方法については、<a href='#lUr48vGaIDo'>サーバの終了</a>を参照してください。</p>
 <h3><a name='i3cTEiX4IXP'></a>Windows クライアント</h3>
-<p>　<strong>サーバを起動させてから</strong> winclime.exe を実行してください。以下のような入力ウィンドウが表示されます。</p>
+<p>　<strong><a href='#iLi66gvSpZh'>サーバを起動</a>させてから</strong> winclime.exe を実行してください。以下のような入力ウィンドウが表示されます。</p>
 <img style='display: block; margin: auto;' src='./images/wiclime.01.png' />
-<p>　この入力ウィンドウは Alt+J を押すたびに表示／非表示が切り替わります。</p>
-<ul>
-<li>ToDo : 起動と終了</li>
-<li>ToDo : Alt+J による変換ウィンドウの表示／非表示切り替え</li>
-<li>ToDo : 基本的な入力、候補選択、Enterによる確定、さらにEnterによるターゲットへの貼り付け</li>
-<li>ToDo : Ctrl+J による変換の有効／無効切り替え</li>
-<li>ToDo : 単語登録と単語削除　⇒　これは「高度な使い方」か？</li>
-</ul>
-<ul>
-<li>64bit cygwin</li>
-</ul>
+<p>　　</p>
+<p>　この入力ウィンドウは Alt+J を押すたびに表示／非表示が切り替わります。普段は非表示にしておいて、日本語入力を行ないたい時に Alt+J で表示させるのが良いでしょう。この入力ウィンドウは常に手前に表示されるので、入力対象のアプリケーションをアクティブにした状態でも入力内容を確認できます。以下はメモ帳を使っている時に入力ウィンドウを表示させたところです。</p>
+<img style='display: block; margin: auto;' src='./images/wiclime.02.png' />
+<p>　この入力ウィンドウは、表示されている状態ではキー入力を横取りして日本語入力を行ないます。また、入力ウィンドウは可能な限りカーソルを追いかけようとします（カーソル位置を取得できる場合に限ります）。また、マウスを使ってドラッグすることによって移動させることもできます。</p>
+<p>　基本的な使い方としては、入力したい単語などを途中まで入力し、表示される候補から選択していきます。それをある程度繰り返してから Enter を押下することで、対象のウィンドウにまとめて入力します。候補の選択は数字キーを使ってインデックスを指定する方法や、上下キーで移動して Enter キーで確定する方法があります。Windows クライアントの詳細については、<a href='#5K9NU4VtTPP'>winclime</a> を参照してください。</p>
+<p>　終了するには、入力ウィンドウが表示されている状態で Alt+Q を押下します。あるいは入力ウィンドウを右クリックすることでも終了できます。</p>
 <h3><a name='bnkiWNANAQQ'></a>Emacs クライアント</h3>
+<ul>
+<li>TODO : ※まだ記述されていません。</li>
+</ul>
 <h3><a name='lUr48vGaIDo'></a>サーバの終了</h3>
-<p>　サーバプロセスを終了させるには、 <strong>クライアントを終了させてから</strong> サーバプロセスのDOS 窓で Ctrl+C を押してください。すると「バッチジョブを終了しますか(Y/N)？」と聞かれるので、y を押してから Enter です。</p>
+<p>　サーバプロセスを終了させるには、 <strong>クライアントを終了させてから</strong> サーバプロセスのDOS 窓で Ctrl+C を押してください。すると「バッチジョブを終了しますか(Y/N)？」と聞かれるので、y を押してから Enter です。ただし、クライアントが起動したままだと終了できないので、先にクライアントを終了させておいてください。</p>
 <img style='display: block; margin: auto;' src='./images/server.02.png' />
+<h2><a name='5K9NU4VtTPP'></a>winclime</h2>
+<ul>
+<li>TODO : ここに winclime の入力ウィンドウの各部名称を説明する画像とかを</li>
+</ul>
+<h3><a name='5YkxWAYOrTl'></a>変換の on / off</h3>
+<p>　英数字や記号を直接入力したい場合、Alt+J で入力ウィンドウを非表示にしてから入力することもできますが、Ctrl+J で変換を一時的に off にすることで入力ウィンドウ上で直接入力することもできます。Ctrl+J を押すたびに、変換の on/off が切り替わります。現在の状態は、カーソルの色や形で判別することができます。</p>
+<h3><a name='kqDUAFFvWrK'></a>インデックス機能</h3>
+<p>　文字入力を開始して候補が表示されると、その最初の９個には 1 ～ 9 の番号が添えられていると思います。これは <strong>インデックス機能</strong> というもので、数字キーを入力することでその候補を（スペースキーなどを繰り返し押して選択することなく）選択・確定することができます。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-index-1.png' />
+<p>　インデックス機能は便利なものですが、数字そのものを入力したい時には邪魔になります。そのため、インデックス機能の on/off を切り替えるショートカットキーとして Ctrl+I が用意されています。入力ウィンドウが表示されている状態で Ctrl+I を押すたびにインデックス機能の on/off が交互に切り替わります。変換中であればインデックスが表示されたり非表示になったりしますが、変換中以外では見た目の変化はありません。</p>
+<p>　なお、インデックス機能を有効にしたまま数字を入力する方法もあります。Ctrl キーを押しながら数字キーを押してください。まとまった数の数字を入力するのでなければ、こちらの方が楽でしょう。</p>
+<p>　起動時点でのインデックス機能の on/off 状態は設定によって変更することができます。詳細は <a href='#fsMRPegD921'>winclime の設定ファイル</a>を参照してください。</p>
+<h3><a name='7FWm69f65nV'></a>ダイレクトキー機能</h3>
+<p>　デフォルト設定では、カンマやピリオドを入力した場合、自動的に句読点が入力されます。また、角括弧（ <code>[</code> と <code>]</code> ）を入力すると、自動的にかぎ括弧（ 「 と」 ）が入力されます。他にもいくつかありますが、この仕組みをダイレクトキー機能と言います。</p>
+<p>　変換中にダイレクトキーとして扱われるキーが入力された場合、変換中の入力はその時点で選択されていた候補で確定されます。また、ダイレクトキー機能はショートカットキー Alt+D によって on/off を切り替えることができます。</p>
+<p>　起動時点でのダイレクトキー機能の on/off 状態や、ダイレクトキーとして扱う入力の種類は設定によって変更することができます。詳細は <a href='#fsMRPegD921'>winclime の設定ファイル</a>を参照してください。</p>
+<h3><a name='6yRONgdUFB5'></a>確定時自動候補検索</h3>
+<p>　デフォルト設定では、変換の確定時にそれに続く可能性が高い単語を自動的に検索し、候補として表示します。これを <strong>確定時自動候補検索</strong> と呼びます。ここで、「変換の確定時」とは、具体的には以下を指します。</p>
+<ul>
+<li>通常の変換による確定</li>
+<li>インデックスによる選択</li>
+<li>ダイレクトキーによる入力</li>
+</ul>
+<p>　実際の動作を見てみましょう。以下は「jidou」というパターンを入力し、表示された候補から「自動」を選択した状態です。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-PSAF-1.png' />
+<p>　ここで Enter キーを押下して変換を確定すると、以下のように、直前の「自動」に続く候補を（過去の変換履歴の学習結果から）自動検索して表示してくれます。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-PSAF-2.png' />
+<p>　確定時自動候補検索は設定によって無効にすることもできます。詳細は <a href='#fsMRPegD921'>winclime の設定ファイル</a>を参照してください。</p>
+<h3><a name='cWwUYxbMO1U'></a>単語登録と単語削除</h3>
+<p>　入力したパターンに対する検索結果に目的の語が見つからない場合、そのまま Ctrl+O を押下することで単語登録を行なうことができます。たとえば、「まんとう」という読みで饅頭と入力しようとして mantou とタイプしたところ、「饅頭」が候補に含まれていなかったとしましょう。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-regword-1.png' />
+<p>　ここで Ctrl+O（ゼロじゃなくて英文字のオーですよ）を押すと、以下のように単語登録画面が表示されます。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-regword-2.png' />
+<p>　表示された単語登録画面に、どうにかして目的の語句を入力します（というと大袈裟ですが、OS 標準の IME などを使うということです）。入力したら Enter キーを押すか、OK ボタンをクリックします。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-regword-3.png' />
+<p>　これで入力パターンと単語の組み合わせが辞書に登録されます。同時に登録した語句で入力が確定するので、そのまま入力を続行できます。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-regword-4.png' />
+<p>　ひとたび単語を登録してしまえば、以降は入力パターンに応じて候補に登場するようになります。以下は、man まで入力した場合の検索結果例です。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-regword-5.png' />
+<p>　登録した単語が追加されるのはユーザー辞書です。そのため、この機能を使用する場合はユーザー辞書を用意しておく必要があります（デフォルトで用意されています）。</p>
+<p>　　</p>
+<p>　続いて、学習辞書やユーザ辞書に登録された単語を削除する方法について説明します。</p>
+<p>　clime は、入力された内容はなんでも学習します。たとえば、以下のように「arimasu → あります」と入力すべきところを誤って「airmasu → あいrます」としてしまった場合でも。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-delword-1.png' />
+<p>　このような誤入力が学習されてしまうと、その入力パターンを途中まで入力した状態では候補として表示されてしまいます。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-delword-2.png' />
+<p>　このような場合はその登録内容を削除してしまいましょう。スペースキーを何回か押して、問題の語句が選択されている状態にします。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-delword-3.png' />
+<p>　この状態で、Ctrl+Q（コントロールキーを押しながらアルファベットのキュー）を押すと、その語句の登録が削除されます。それ以外は入力途中の状態が維持されるので、入力をそのまま続行することができます。</p>
+<img style='display: block; margin: auto;' src='./images/winclime-delword-4.png' />
+<p>　この機能で削除できるのは、学習辞書とユーザ辞書に登録されている語句のみです。ルックアップ辞書のような固定辞書の内容は削除することができませんので注意してください。</p>
+<h3><a name='6kCkK7vTkJQ'></a>日付と時刻の挿入</h3>
+<p>　Ctrl+; および Ctrl+: という 2 つのショートカットキーにより、現在の日付と時刻を入力することができます。試してみてください。いくつかの書式で現在の日付や時刻が候補として表示されます。</p>
+<p>　ここで使用される書式は、サーバー側の設定で指定するようになっています。<code>climesrv.conf</code> というファイルの以下の 2 行がそれです。 <code>yyyy</code> や <code>HH</code> といったプレースホルダが日時情報に置き換えられます。詳細は「<a href='#e4VayOmwzMA'>日付と時刻のフォーマット指定</a>」を参照してください。</p>
+<pre>
+ :date-formats ("yyyy年mm月dd日（aaa）" "yyyy/mm/dd")
+ :time-formats ("HH:MM:SS" "HH:MM" "H時M分S秒" "H時M分")
+</pre>
+<p>　また、日付や時刻として解釈可能なキー入力によって、書式化された日付や時刻を生成することもできます。たとえば、1231 という入力に対しては日付としての12月31日や時刻としての12時31分として解釈され、上記の指定によって書式化されて候補として表示されます。</p>
+<h3><a name='d1iVqi2cENP'></a>Web 辞書連係</h3>
+<ul>
+<li>TODO : まだ記述されていません</li>
+</ul>
+<h3><a name='itIuuWNoCR6'></a>カラーテーマ機能</h3>
+<ul>
+<li>TODO : まだ記述されていません</li>
+</ul>
+<h3><a name='4Gyda0MPgM1'></a>winclime のショートカットキー</h3>
+<ul>
+<li>TODO : まだ記述されていません</li>
+</ul>
+<table align='center'>
+<tr><th>キー</th><th>説明</th></tr>
+<tr><td align='left'>Alt+J</td><td align='left'>入力ウィンドウの表示／非表示の切り替え</td></tr>
+<tr><td align='left'>Alt+Q</td><td align='left'>終了</td></tr>
+<tr><td align='left'>Ctrl+I</td><td align='left'>インデックス機能の on/off 切り替え</td></tr>
+<tr><td align='left'>Ctrl+J</td><td align='left'>変換の on/off 切り替え</td></tr>
+<tr><td align='left'>Ctrl+O</td><td align='left'>ユーザー辞書への単語登録</td></tr>
+<tr><td align='left'>Ctrl+Q</td><td align='left'>学習辞書／ユーザー辞書からの削除</td></tr>
+<tr><td align='left'>Ctrl+Space</td><td align='left'>変換 on 状態でも半角スペースを入力</td></tr>
+<tr><td align='left'>Alt+D</td><td align='left'>ダイレクトキー機能の on/off 切り替え</td></tr>
+<tr><td align='left'>Alt+W</td><td align='left'>Web 辞書連係</td></tr>
+<tr><td align='left'>F1</td><td align='left'>この文書を表示</td></tr>
+<tr><td align='left'>F9</td><td align='left'>テーマの切り替え</td></tr>
+</table>
+<p>入力中</p>
+<table align='center'>
+<tr><th>キー</th><th>説明</th></tr>
+<tr><td align='left'>Ctrl+A, Home</td><td align='left'>入力ウィンドウ中でカーソルを先頭に移動</td></tr>
+<tr><td align='left'>Ctrl+E, End</td><td align='left'>入力ウィンドウ中でカーソルを末尾に移動</td></tr>
+<tr><td align='left'>Ctrl+F, →</td><td align='left'>入力ウィンドウ中でカーソルを１文字右に移動</td></tr>
+<tr><td align='left'>Ctrl+B, ←</td><td align='left'>入力ウィンドウ中でカーソルを１文字左に移動</td></tr>
+<tr><td align='left'>Ctrl+D</td><td align='left'>入力ウィンドウ中でカーソル位置の文字を削除</td></tr>
+<tr><td align='left'>Ctrl+K</td><td align='left'>入力ウィンドウ中でカーソル位置よりも右の文字列を削除</td></tr>
+<tr><td align='left'>Ctrl+T</td><td align='left'>入力ウィンドウ中でカーソル位置とその手前の文字を入れ替える</td></tr>
+<tr><td align='left'>Ctrl+;</td><td align='left'>現在日の入力</td></tr>
+<tr><td align='left'>Ctrl+:</td><td align='left'>現在時刻の入力</td></tr>
+<tr><td align='left'>Ctrl+1 ～ Ctrl+9</td><td align='left'>数字の入力</td></tr>
+</table>
+<p>変換中</p>
+<table align='center'>
+<tr><th>キー</th><th>説明</th></tr>
+<tr><td align='left'>1 ～ 9</td><td align='left'>インデックス番号の候補を選択</td></tr>
+<tr><td align='left'>Ctrl+P, ↑</td><td align='left'>前の候補を選択</td></tr>
+<tr><td align='left'>Ctrl+N, ↓</td><td align='left'>次の候補を選択</td></tr>
+<tr><td align='left'>Ctrl+G, ESC</td><td align='left'>変換をキャンセルして入力パターンのまま確定</td></tr>
+</table>
+<h3><a name='fsMRPegD921'></a>winclime の設定ファイル</h3>
+<ul>
+<li>TODO : まだ記述されていません</li>
+</ul>
+<h2><a name='aZPvILc7NoW'></a>climesrv</h2>
+<h3><a name='arpThp3j9gF'></a>climesrv の設定ファイル</h3>
+<pre>
+;;-*-MODE:lisp-*-
+(
+ :address      "localhost"
+ :ports        (1178 1179)
+ :cand-max     40
+ :learn-max    20000
+ :log-file     "./climesrv.log"
+ :log-stdout   t
+ :dicts
+  ((:learn  "learndic"    "./01.learn.dict"    :standard)
+   (:user   "userdic"     "./02.user.dict"     :standard :okurigana-search   t)
+   (:lookup "staticdic"   "./08.static.dict"   :standard :okurigana-search   t)
+   (:lookup "tankanjidic" "./09.tankanji.dict" :standard :okurigana-search nil)
+   (:text   "4jijukgodic" "./0A.4jijukgo.dict" :standard :okurigana-search nil)
+   (:text   "emojidic"    "./0B.emoji.dict"    :others   :okurigana-search nil)
+   (:text   "addressdic"  "./0C.address.dict"  :location :okurigana-search nil))
+ :date-formats ("yyyy年mm月dd日（aaa）" "yyyy/mm/dd")
+ :time-formats ("HH:MM:SS" "HH:MM" "H時M分S秒" "H時M分")
+ :debug-log     nil
+)
+</pre>
+<h4><a name='e4VayOmwzMA'></a>日付と時刻のフォーマット指定</h4>
+<table align='center'>
+<tr><th>指定子</th><th>説明</th></tr>
+<tr><td align='left'><code>yyyy</code></td><td align='left'>年の４桁表記に展開されます。</td></tr>
+<tr><td align='left'><code>yy</code></td><td align='left'>年の２桁表記に展開されます。</td></tr>
+<tr><td align='left'><code>mmmmm</code></td><td align='left'>J, F, M など月の英語表記の頭文字に展開されます。</td></tr>
+<tr><td align='left'><code>mmmm</code></td><td align='left'>January, February など月の英語表記に展開されます。</td></tr>
+<tr><td align='left'><code>mmm</code></td><td align='left'>Jan, Feb, Mar など月の英語表記の省略形に展開されます。</td></tr>
+<tr><td align='left'><code>mm</code></td><td align='left'>月の２桁表記に展開されます。１桁の場合でも０埋めして２桁にします。</td></tr>
+<tr><td align='left'><code>m</code></td><td align='left'>1～12の月に展開されます。</td></tr>
+<tr><td align='left'><code>dddd</code></td><td align='left'>Sunday, Monday など曜日の英語表記に展開されます。</td></tr>
+<tr><td align='left'><code>ddd</code></td><td align='left'>Sun, Mon, Tue など曜日の英語表記の省略形に展開されます。</td></tr>
+<tr><td align='left'><code>dd</code></td><td align='left'>日の２桁表記に展開されます。１桁の場合でも０埋めして２桁にします。</td></tr>
+<tr><td align='left'><code>d</code></td><td align='left'>1～31の日に展開されます。</td></tr>
+<tr><td align='left'><code>aaaa</code></td><td align='left'>日曜日, 月曜日 など曜日の日本語表記に展開されます。</td></tr>
+<tr><td align='left'><code>aaa</code></td><td align='left'>日, 月, 火 など曜日の日本語表記に展開されます。</td></tr>
+<tr><td align='left'><code>HH</code></td><td align='left'>時の２桁表記に展開されます。１桁の場合でも０埋めして２桁にします。</td></tr>
+<tr><td align='left'><code>H</code></td><td align='left'>時に展開されます。</td></tr>
+<tr><td align='left'><code>MM</code></td><td align='left'>分の２桁表記に展開されます。１桁の場合でも０埋めして２桁にします。</td></tr>
+<tr><td align='left'><code>M</code></td><td align='left'>0～59の分に展開されます。</td></tr>
+<tr><td align='left'><code>SS</code></td><td align='left'>秒の２桁表記に展開されます。１桁の場合でも０埋めして２桁にします。</td></tr>
+<tr><td align='left'><code>S</code></td><td align='left'>0～59の秒に展開されます。</td></tr>
+<tr><td align='left'><code>AM/PM</code></td><td align='left'>午前／午後を AM または PM で表記します。</td></tr>
+<tr><td align='left'><code>am/pm</code></td><td align='left'>午前／午後を am または pm で表記します。</td></tr>
+<tr><td align='left'><code>A/P</code></td><td align='left'>午前／午後を A または P で表記します。</td></tr>
+<tr><td align='left'><code>a/p</code></td><td align='left'>午前／午後を a または p で表記します。</td></tr>
+</table>
+<p>　<code>HH</code> および <code>H</code> については、書式文字列中に <code>AM/PM</code> , <code>am/pm</code> , <code>A/P</code> , <code>a/m</code> のいずれかが存在する場合は12時間表記となり、それ以外の場合は24時間表記となります。</p>
 <h2><a name='b7aUsriTkDJ'></a>POBoxとの相違点</h2>
+<ul>
+<li>TODO : このコーナー、まるっと不要な気がするね。</li>
+</ul>
 <p>　ここでは、オリジナルの POBox と CLIME の違いを簡単にまとめています。</p>
 <h3><a name='gFYY21FFLil'></a>サーバ</h3>
 <ul>
@@ -58,7 +232,7 @@
 <li>学習辞書のエントリ数に上限を設定する機能</li>
 <li>辞書への変更をマークし、必要な時だけ保存する機能</li>
 </ul>
-<h3><a name='i3cTEiX4IXP'></a>Windows クライアント</h3>
+<h3><a name='8d04axcHnVE'></a>Windows 用クライアント</h3>
 <ul>
 <li>〔単語登録〕機能</li>
 <li>〔単語削除〕機能</li>
@@ -110,7 +284,7 @@
 </ul>
 </li>
 </ul>
-<h3><a name='bnkiWNANAQQ'></a>Emacs クライアント</h3>
+<h3><a name='2hNKrm4o8dv'></a>Emacs 用クライアント</h3>
 <ul>
 <li>単語登録機能の改善</li>
 <li>日時文字列挿入機能</li>
